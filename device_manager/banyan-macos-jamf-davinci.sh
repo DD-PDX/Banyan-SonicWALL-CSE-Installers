@@ -22,7 +22,7 @@ HIDE_SERVICES=false
 DISABLE_QUIT=false
 START_AT_BOOT=true
 HIDE_ON_START=true
-DISABLE_AUTO_UPDATE=false
+DISABLE_AUTO_UPDATE=true
 
 # User Information for Device Certificate
 MULTI_USER=false
