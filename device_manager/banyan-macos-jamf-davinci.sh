@@ -14,8 +14,8 @@ APP_VERSION="$6"
 # Check docs for more options and details:
 # https://docs.banyansecurity.io/docs/feature-guides/manage-users-and-devices/device-managers/distribute-desktopapp/#mdm-config-json
 DEVICE_OWNERSHIP="C"
-CA_CERTS_PREINSTALLED=false
-SKIP_CERT_SUPPRESSION=false
+CA_CERTS_PREINSTALLED=true
+SKIP_CERT_SUPPRESSION=true
 IS_MANAGED_DEVICE=true
 DEVICE_MANAGER_NAME="Jamf"
 HIDE_SERVICES=false
