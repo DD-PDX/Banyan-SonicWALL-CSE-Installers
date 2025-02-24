@@ -27,7 +27,8 @@ $DISABLE_AUTO_UPDATE = $false
 # User Information for Device Certificate
 $MULTI_USER = $true
 
-
+# Preview Feature: Allow App via NetFirewallRule for Windows Firewall.
+$ALLOW_APP = $false
 
 
 ################################################################################
@@ -47,7 +48,7 @@ if (!$INVITE_CODE -or !$DEPLOYMENT_KEY) {
 
 if (!$APP_VERSION) {
     Write-Host "Checking for latest version of app"
-    $res = Invoke-WebRequest "https://www.banyanops.com/app/windows/v3/latest" -MaximumRedirection 0 -ErrorAction SilentlyContinue -UseBasicParsing
+    $res = Invoke-WebRequest "https://www.banyanops.com/app/windows/v3/latest" -MaximumRedirection 1 -ErrorAction SilentlyContinue -UseBasicParsing
     $loc = $res.Headers.Location
     $match = select-string "Banyan-Setup-(.*).exe" -inputobject $loc
     $APP_VERSION = $match.matches.groups[1].value
@@ -181,6 +182,16 @@ function stop_app() {
     Start-Sleep -Seconds 2
 }
 
+function allow_app() {
+    if ($ALLOW_APP) {
+        New-NetFirewallRule `
+            -DisplayName "SonicWall-CSE-App" `
+            -Program "C:\Program Files\Banyan\Banyan.exe" `
+            -Direction Outbound `
+            -Action Allow `
+            -Profile Public
+        }
+}
 
 if (($INVITE_CODE -eq "upgrade") -and ($DEPLOYMENT_KEY -eq "upgrade")) {
     Write-Host "Running upgrade flow"
@@ -195,5 +206,6 @@ if (($INVITE_CODE -eq "upgrade") -and ($DEPLOYMENT_KEY -eq "upgrade")) {
     download_install
     stage
     create_config
+    allow_app
     start_app
 }
