@@ -22,7 +22,7 @@ HIDE_SERVICES=false
 DISABLE_QUIT=false
 START_AT_BOOT=true
 HIDE_ON_START=true
-DISABLE_AUTO_UPDATE=true
+DISABLE_AUTO_UPDATE=false
 
 # User Information for Device Certificate
 MULTI_USER=false
@@ -47,8 +47,7 @@ fi
 
 if [[ -z "$APP_VERSION" ]]; then
     echo "Checking for latest version of app"
-    loc=$( curl -sI https://www.banyanops.com/app/macos/v3/latest | awk '/Location:/ {print $2}' )
-    APP_VERSION=$( awk -F'Banyan-|.pkg' '{print $2}' <<< "$loc" )
+    APP_VERSION=$( curl -s https://www.banyanops.com/app/releases/latest.yml | grep "version:" | awk '{print $2}' )
 fi
 
 
