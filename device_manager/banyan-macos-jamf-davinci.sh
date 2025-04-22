@@ -1,5 +1,10 @@
 #!/bin/bash
-
+#
+# 
+# Based on the SonicWALL/Banyan provided Jamf script.  
+# Updated to change default settings and pass variables 
+# from Jamf for the Invite Code and Deployment Key.
+#
 ################################################################################
 # Banyan Zero Touch Installation
 # Confirm or update the following variables prior to running the script
