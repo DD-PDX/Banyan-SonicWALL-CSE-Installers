@@ -4,6 +4,8 @@
 # Updated to change default settings and pass properties 
 # from NinjaRMM for the Invite Code and Deployment Key variables.
 #
+# See https://davincid.itglue.com/1987796/docs/19425467 for more information.
+#
 
 ################################################################################
 # Banyan Zero Touch Installation
