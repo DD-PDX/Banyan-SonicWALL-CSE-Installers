@@ -1,18 +1,18 @@
 # Run as administrator
-#
 # 
 # Based on the SonicWALL/Banyan provided InTune script.  
-# Updated to change default settings and pass variables 
-# from NinjaRMM for the Invite Code and Deployment Key.
+# Updated to change default settings and pass properties 
+# from NinjaRMM for the Invite Code and Deployment Key variables.
 #
+
 ################################################################################
 # Banyan Zero Touch Installation
 # Confirm or update the following variables prior to running the script
 
 # Deployment Information
 # Obtain from the Banyan admin console: Settings > App Deployment
-$INVITE_CODE = "$env:invite_code"
-$DEPLOYMENT_KEY = "$env:deployment_key"
+$INVITE_CODE = Ninja-Property-Get sonicwallCseRegistrationCode
+$DEPLOYMENT_KEY = Ninja-Property-Get sonicwallcsedeploymentkey
 $APP_VERSION = ""
 
 # Device Registration and Banyan App Configuration
